@@ -1,2 +1,19 @@
+= render 'shared/content_title', title: "All Posts"
+
 - @posts.each do |post|
-  = post.title
+  .row
+    .col-lg-8.well
+      = render post.categories
+      %h4
+        = link_to post.title, post_path(post)
+      %p
+        = post.description
+      %p
+        %span.quiet
+          posted by
+        = post.creator.username
+        %small
+          at
+          = post.created_at
+      %span
+        = link_to("#{post.comments.size} comments", post_path(post))

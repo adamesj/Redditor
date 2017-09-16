@@ -1,0 +1,10 @@
+%p
+  = render @post.categories
+
+= render 'shared/content_title', title: @post.title
+
+%p
+  = @post.description
+  %hr/
+
+= link_to 'Back to all posts', posts_path
