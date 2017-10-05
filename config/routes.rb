@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :posts, except: [:destroy] do
     resources :comments, only: [:create] #comments only pertain to one particular post. that is why the id is in the url
   end
+
+  resources :categories
 end

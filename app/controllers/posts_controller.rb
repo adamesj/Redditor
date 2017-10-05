@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       flash[:notice] = "You've created a new post!"
       redirect_to posts_path
     else
-      flash[:error] = "Something went wrong, check the error message."
+      flash[:error] = "Something went wrong, please check the error message."
       render :new
     end
   end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Your post has been updated!"
       redirect_to post_path(post)
     else
-      flash[:error] = "Something went wrong, check the error message."
+      flash[:error] = "Something went wrong, please check the error message."
       render :edit
     end
   end

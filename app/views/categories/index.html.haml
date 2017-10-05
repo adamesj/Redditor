@@ -1,0 +1,7 @@
+= render 'shared/content_title', title: "All Categories"
+
+- @categories.each do |category|
+  .row
+    .col-lg-8.well
+      %h4
+        = link_to category.name
