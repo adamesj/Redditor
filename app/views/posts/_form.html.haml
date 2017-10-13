@@ -1,31 +1,31 @@
-- if @post.errors.any?
-  .alert.alert-danger
-    %h5
-      Please revise the following errors:
-    %ul
-      - @post.errors.full_messages.each do |msg|
-        %li
-          = msg
+= render 'shared/errors', obj: @post
 
 = form_for @post do |f|
   .col-lg-6
-    .well#post-form-bkgnd
-      .row
-        .col-lg-12
-          .form-input
-            = f.label :title
-            = f.text_field :title, class: 'form-control'
-      .row
-        .col-lg-12
-          .form-input
-            = f.label :description
-            = f.text_area :description, class: 'form-control'
-      .row
-        .col-lg-12
-          .form-input
-            = f.label :url
-            = f.text_field :url, class: 'form-control'
-      .row
-        .col-lg-12
-          .form-input
-            = f.submit nil, class: 'btn btn-primary'
+    .row
+      .col-lg-12
+        .form-input
+          = f.label :title
+          = f.text_field :title, class: 'form-control'
+    .row
+      .col-lg-12
+        .form-input
+          = f.label :url
+          = f.text_field :url, class: 'form-control'
+    .row
+      .col-lg-12
+        .form-input
+          = f.label :description
+          = f.text_area :description, class: 'form-control'
+    .row
+      .col-lg-12
+        = f.label "Categories"
+        %br/
+        = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cat|
+          .form-input#checkboxes
+            = cat.check_box
+            = cat.label
+    .row
+      .col-lg-12
+        .form-input
+          = f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary')

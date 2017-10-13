@@ -10,4 +10,31 @@
   = @post.description
   %hr/
 
-= link_to 'Back to all posts', posts_path
+= form_for [@post, @comment] do |f|
+  = render 'shared/errors', obj: @comment
+  .row
+    .col-lg-12
+      .row
+        .col-lg-4
+          .form-input
+            = f.label :body, 'Leave a comment'
+            = f.text_area :body, rows: 3, class: 'form-control'
+      .row
+        .col-lg-6
+          .form-input
+            = f.submit "Create Comment", class: 'btn btn-primary'
+%h5
+  Comments
+
+- @post.comments.each do |comment|
+  .well.col-md-8
+    %em
+      = comment.body
+    %br/
+    %span.quiet
+      by #{comment.creator.username}
+    %small
+      on #{date_helper(comment.created_at)}
+.row
+  .col-lg-12
+    = link_to 'Back to all posts', posts_path
