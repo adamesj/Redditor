@@ -1,5 +1,5 @@
 %p.pull-right
-  = link_to 'edit this post', edit_post_path(@post)
+  = link_to 'edit this post', edit_post_path(@post) if logged_in?
 
 %p
   = render @post.categories
@@ -27,14 +27,7 @@
   Comments
 
 - @post.comments.each do |comment|
-  .well.col-md-8
-    %em
-      = comment.body
-    %br/
-    %span.quiet
-      by #{comment.creator.username}
-    %small
-      on #{date_helper(comment.created_at)}
+  = render 'comments/comment', comment: comment
 .row
   .col-lg-12
     = link_to 'Back to all posts', posts_path

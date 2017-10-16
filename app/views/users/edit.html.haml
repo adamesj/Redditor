@@ -1,0 +1,24 @@
+= render 'shared/content_title', title: "Edit your profile"
+= form_for @user do |f|
+  .well
+    .container
+      .row
+        .col-sm-8.col-md-6
+          = render 'shared/errors', obj: @user
+          .form-input
+            = f.label :username
+            = f.text_field :username, class: 'form-control'
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = f.label :time_zone
+            = f.time_zone_select :time_zone, nil, {default: ActiveSupport::TimeZone.us_zones}, {class: 'form-control'}
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = f.label :phone
+            = f.text_field :phone, class: 'form-control'
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = f.submit(@user.new_record? ? 'Register' : 'Update Profile', class: 'btn btn-success')

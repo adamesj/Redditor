@@ -1,0 +1,11 @@
+.navbar-nav > li > a {
+  margin: 8px 5px;
+  padding: 5px 10px;
+}
+
+#new-post-btn {
+  color: #fff;
+  &:hover {
+    color: #777;
+  }
+}

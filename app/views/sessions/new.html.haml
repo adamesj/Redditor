@@ -1,0 +1,20 @@
+%h4
+  Enter your login information
+
+.well
+  = form_tag '/login' do
+    .container
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = label_tag :username
+            = text_field_tag :username, params[:username] || '', class: 'form-control'
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = label_tag :password
+            = password_field_tag :password, params[:password] || '', class: 'form-control'
+      .row
+        .col-sm-8.col-md-6
+          .form-input
+            = submit_tag 'Login', class: 'btn btn-success'

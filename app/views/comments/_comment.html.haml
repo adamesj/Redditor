@@ -1,0 +1,12 @@
+- show_post ||= false
+
+.well.col-md-8
+  %em
+    = comment.body
+  - if show_post
+    on #{link_to comment.post.title, post_path(comment.post)}
+  %br/
+  %span.quiet
+    by #{link_to comment.creator.username, user_path(comment.creator)}
+  %small
+    on #{date_helper(comment.created_at)}

@@ -1,0 +1,19 @@
+= render 'shared/content_title', title: "Posts for #{@category.name}"
+
+- @category.posts.each do |post|
+  .container-fluid
+    .row
+      .col-lg-8.well
+        %h4
+          = link_to post.title, url_helper(post.url)
+        %p
+          = post.description
+        %p
+          %span.quiet
+            posted by
+          = post.creator.username
+          %small
+            on
+            = date_helper(post.created_at)
+        %span
+          = link_to("#{post.comments.size} comments", post_path(post))
