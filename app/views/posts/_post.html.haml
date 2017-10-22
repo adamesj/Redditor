@@ -1,6 +1,17 @@
 .container-fluid
   .row
-    .col-lg-8.well
+    .col-xs-4.col-lg-2.well.text-center
+      = link_to vote_post_path(post, vote: true), method: 'post' do
+        = fa_icon "arrow-up", class: "fa-2x"
+      %h4
+        #{post.total_votes} votes
+
+      = link_to vote_post_path(post, vote: false), method: 'post' do
+        = fa_icon "arrow-down", class: "fa-2x"
+
+    .col-xs-1
+
+    .col-xs-6.col-lg-8.well
       = render post.categories
       %h4
         = link_to post.title, url_helper(post.url)

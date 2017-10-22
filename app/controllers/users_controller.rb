@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
+    unless current_user
       flash[:error] = "You don't have permission for that action!"
       redirect_to root_path
     end

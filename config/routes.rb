@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#delete'
 
   resources :posts, except: [:destroy] do
+    member do
+      post :vote
+    end
+
     resources :comments, only: [:create] #comments only pertain to one particular post. that is why the id is in the url
   end
 

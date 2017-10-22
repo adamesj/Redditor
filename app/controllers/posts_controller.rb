@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
 
   def index
     @posts = Post.all
@@ -42,6 +42,16 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "Your post has been deleted."
     redirect_to posts_path
+  end
+
+  def vote
+    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+    if @vote.valid?
+      flash[:notice] = "Your vote has been counted!"
+    else
+      flash[:error] = "Your vote was not counted!"
+    end
+      redirect_to :back
   end
 
   private
