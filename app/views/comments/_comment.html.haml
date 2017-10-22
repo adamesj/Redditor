@@ -1,12 +1,30 @@
 - show_post ||= false
 
-.well.col-md-8
-  %em
-    = comment.body
-  - if show_post
-    on #{link_to comment.post.title, post_path(comment.post)}
-  %br/
-  %span.quiet
-    by #{link_to comment.creator.username, user_path(comment.creator)}
-  %small
-    on #{date_helper(comment.created_at)}
+.container-fluid
+  .row
+    .col-xs-4.col-lg-2.well.text-center
+      - if logged_in?
+        = link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do
+          = fa_icon "arrow-up", class: "fa-2x"
+
+        %h4
+          #{comment.total_votes} votes
+
+        = link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do
+          = fa_icon "arrow-down", class: "fa-2x"
+      - else
+        %h4
+          #{comment.total_votes} votes
+
+    .col-xs-1
+
+    .col-xs-6.col-lg-8.well
+      %em
+        = comment.body
+      - if show_post
+        on #{link_to comment.post.title, post_path(comment.post)}
+      %br/
+      %span.quiet
+        by #{link_to comment.creator.username, user_path(comment.creator)}
+      %small
+        on #{date_helper(comment.created_at)}

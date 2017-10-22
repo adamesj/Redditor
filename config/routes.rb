@@ -18,7 +18,11 @@ Rails.application.routes.draw do
       post :vote
     end
 
-    resources :comments, only: [:create] #comments only pertain to one particular post. that is why the id is in the url
+    resources :comments, only: [:create] do #comments only pertain to one particular post. that is why the id is in the url
+      member do
+        post :vote
+      end
+    end
   end
 
   resources :categories
