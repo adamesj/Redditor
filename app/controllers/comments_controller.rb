@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     if vote.valid?
       flash[:notice] = "Your vote has been counted!"
     else
-      flash[:notice] = "Your vote was not counted!"
+      flash[:error] = "Your vote was not counted!"
     end
     redirect_to :back
   end
