@@ -2,9 +2,9 @@
   .row
     .col-xs-4.col-lg-2.well.text-center
       - if logged_in?
-        = link_to vote_post_path(post, vote: true), method: 'post' do
+        = link_to vote_post_path(post, vote: true), method: 'post', remote: true do
           = fa_icon "arrow-up", class: "fa-2x"
-        %h4
+        %h4{id: "post_#{post.id}_votes"}
           #{post.total_votes} votes
         = link_to vote_post_path(post, vote: false), method: 'post' do
           = fa_icon "arrow-down", class: "fa-2x"
@@ -17,7 +17,7 @@
     .col-xs-6.col-lg-8.well
       = render post.categories
       %h4
-        = link_to post.title, url_helper(post.url)
+        = link_to post.title, post_path(post)
       %p
         = post.description
       %p
